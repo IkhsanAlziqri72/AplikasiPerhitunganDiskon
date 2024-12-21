@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -77,6 +80,11 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
 
         buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonHitung.setText("Hitung Harga");
+        buttonHitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonHitungActionPerformed(evt);
+            }
+        });
 
         textRiwayat.setColumns(20);
         textRiwayat.setRows(5);
@@ -162,6 +170,33 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHitungActionPerformed
+        // TODO add your handling code here:
+        try {
+            // Ambil harga asli
+            double hargaAsli = Double.parseDouble(textHargaAsli.getText());
+            // Ambil diskon dari JComboBox
+            int diskon = Integer.parseInt(comboDiskon.getSelectedItem().toString().replace("%", ""));
+            // Tambahkan diskon dari kode kupon jika ada
+            String kupon = textKupon.getText();
+            if (kupon.equalsIgnoreCase("DISKON50")) {
+                diskon += 50; // Tambahkan 50% diskon
+            }
+            // Batas maksimal diskon adalah 100%
+            diskon = Math.min(diskon, 100);
+            // Hitung harga akhir
+            double penghematan = hargaAsli * diskon / 100;
+            double hargaAkhir = hargaAsli - penghematan;
+            // Tampilkan hasil
+            labelHasil.setText("Harga Akhir: Rp" + hargaAkhir);
+            labelPenghematan.setText("Penghematan: Rp" + penghematan);
+            // Tambahkan ke riwayat
+            textRiwayat.append("Harga Asli: Rp" + hargaAsli + ", Diskon: " + diskon + "%, Harga Akhir: Rp" + hargaAkhir + "\n");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Harap masukkan angka yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonHitungActionPerformed
 
     /**
      * @param args the command line arguments
