@@ -83,6 +83,12 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
             }
         });
 
+        sliderDiskon.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                sliderDiskonStateChanged(evt);
+            }
+        });
+
         buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonHitung.setText("Hitung Harga");
         buttonHitung.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +216,12 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
             sliderDiskon.setValue(diskon);
         }
     }//GEN-LAST:event_comboDiskonItemStateChanged
+
+    private void sliderDiskonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_sliderDiskonStateChanged
+        // TODO add your handling code here:
+         int diskon = sliderDiskon.getValue();
+         comboDiskon.setSelectedItem(diskon + "%");
+    }//GEN-LAST:event_sliderDiskonStateChanged
 
     /**
      * @param args the command line arguments

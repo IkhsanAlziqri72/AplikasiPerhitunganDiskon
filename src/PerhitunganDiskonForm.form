@@ -200,6 +200,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JSlider" name="sliderDiskon">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sliderDiskonStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonHitung">
           <Properties>
