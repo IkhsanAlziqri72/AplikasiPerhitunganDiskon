@@ -77,6 +77,11 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
         labelPenghematan.setText("Penghematan");
 
         comboDiskon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "10%", "20%", "50%" }));
+        comboDiskon.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboDiskonItemStateChanged(evt);
+            }
+        });
 
         buttonHitung.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonHitung.setText("Hitung Harga");
@@ -197,6 +202,14 @@ public class PerhitunganDiskonForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Harap masukkan angka yang valid!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_buttonHitungActionPerformed
+
+    private void comboDiskonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboDiskonItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+            int diskon = Integer.parseInt(comboDiskon.getSelectedItem().toString().replace("%", ""));
+            sliderDiskon.setValue(diskon);
+        }
+    }//GEN-LAST:event_comboDiskonItemStateChanged
 
     /**
      * @param args the command line arguments
